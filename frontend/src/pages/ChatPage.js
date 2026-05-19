@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Volume2, VolumeX, RotateCcw, Sparkles, BookOpen, Zap, Headphones, ChevronRight, Star, Trophy, Brain } from 'lucide-react';
 import MicButton from '../components/MicButton';
 import { useSpeechInput } from '../hooks/useSpeechInput';
+import API_BASE from '../config';
 
 const DISABILITY_TYPES = [
   {
@@ -259,7 +260,7 @@ export default function ChatPage() {
     setMessages(history);
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/chat', {
+      const res = await fetch(`${API_BASE}/chat`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: msg, disability_type: selectedType, conversation_history: messages }),
       });

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileText, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import API_BASE from '../config';
 
 const DISABILITY_TYPES = [
   { id: 'dyslexia', label: 'Dyslexia', emoji: '📖', color: '#4F86C6', bg: 'bg-blue-50', border: 'border-blue-300' },
@@ -34,7 +35,7 @@ export default function UploadPage() {
     const form = new FormData();
     form.append('file', file);
     try {
-      const res = await fetch(`http://localhost:8000/upload-pdf?disability_type=${selectedType}`, {
+      const res = await fetch(`${API_BASE}/upload-pdf?disability_type=${selectedType}`, {
         method: 'POST',
         body: form,
       });
